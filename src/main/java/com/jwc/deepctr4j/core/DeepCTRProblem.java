@@ -19,7 +19,11 @@ import org.nd4j.linalg.lossfunctions.LossFunctions;
 
 import com.google.common.base.Charsets;
 import com.jwc.deepctr4j.layer.MeanPoolLayer;
+import com.jwc.deepctr4j.utils.Field;
+import com.jwc.deepctr4j.utils.Fields;
 import com.jwc.deepctr4j.utils.ModelUtils;
+
+import lombok.NoArgsConstructor;
 
 /**
  * 
@@ -27,7 +31,27 @@ import com.jwc.deepctr4j.utils.ModelUtils;
  *
  */
 public class DeepCTRProblem {
+	
+	private List<Field> fieldList;
+	private int labelIndex = -1;
 
+	public DeepCTRProblem schema (List<Field> fieldList) throws IOException {
+		if(fieldList.size() < 2) {
+			throw new IOException("size of fieldList should be large than 2.");
+		}
+		for (int i = 0; i < fieldList.size(); i++) {
+			
+		}
+		return this;
+	} 
+	
+	public static void main(String[] args) throws IOException {
+		
+		DeepCTRProblem problem = new DeepCTRProblem();
+		problem.schema(Fields.newCategorical(""), Fields.newCategorical(""), Fields.newLabel("y") );
+	}
+	
+	
 	public DeepCTRProblem() throws IOException {
 		
 		List<String> corpus = FileUtils.readLines(new File("/Users/craig/fineFile"), Charsets.UTF_8);
